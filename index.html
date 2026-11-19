@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090807"><meta name="description" content="A birthday tribute to Jai — the legend, the brother, the legacy.">
+<meta name="theme-color" content="#090807">
+<style>
+html,body{margin:0;min-height:100%;background:#090807}
+#surpriseGate{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-height:100vh!important;box-sizing:border-box!important;z-index:2147483000!important;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:28px 22px;background:#090807!important;color:#f5eee2;text-align:center}
+#surpriseGate[hidden]{display:none!important}
+#surpriseGate .surprise-glow{position:absolute;width:min(78vw,560px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(190,145,75,.17),rgba(190,145,75,.045) 42%,transparent 70%);pointer-events:none}
+#surpriseGate .gate-eyebrow,#surpriseGate .gate-footnote{position:relative;color:#d9b779;font:9px "DM Sans",sans-serif;letter-spacing:.28em}
+#surpriseGate .gate-emblem{position:relative;display:flex;align-items:center;justify-content:center;width:94px;height:94px;margin:38px 0;border:1px solid rgba(229,196,135,.5);border-radius:50%;font:54px "Playfair Display",serif;color:#d9b779}
+#surpriseGate .gate-emblem span{position:absolute;right:8px;top:7px;font:15px Georgia}
+#surpriseGate .gate-title{position:relative;margin:0 0 38px;font:clamp(30px,6vw,54px)/1.2 "Playfair Display",serif;color:#f5eee2}
+#surpriseGate .gate-title em{color:#d9b779;font-weight:500}
+#surpriseGate .surprise-button{position:relative;display:flex;align-items:center;justify-content:space-between;gap:35px;min-width:240px;padding:17px 20px;border:1px solid rgba(229,196,135,.72);border-radius:0;background:rgba(229,196,135,.08);color:#d9b779;font:9px "DM Sans",sans-serif;letter-spacing:.2em;cursor:pointer}
+#surpriseGate .surprise-button b{font-size:17px;font-weight:400}
+#surpriseGate .gate-footnote{position:absolute;bottom:max(28px,env(safe-area-inset-bottom));opacity:.65;font-size:8px}
+@media(max-width:650px){#surpriseGate .gate-emblem{width:82px;height:82px;margin:32px 0}#surpriseGate .gate-title{margin-bottom:34px}}
+</style><meta name="description" content="A birthday tribute to Jai — the legend, the brother, the legacy.">
 <title>Jai — The Legend Edition</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=surprise-2">
 </head>
 <body>
 <div class="surprise-gate" id="surpriseGate">
@@ -61,5 +76,5 @@
 <footer class="footer"><span>J<span>.</span> / THE LEGEND EDITION</span><span>ONE OF ONE. NO REPLICAS.</span></footer>
 <div id="lightbox" class="lightbox" hidden><button id="closeLightbox" aria-label="Close photo">×</button><img id="lightboxImage" alt=""></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
-<script src="script.js"></script>
+<script src="script.js?v=surprise-2"></script>
 </body></html>
