@@ -55,9 +55,19 @@
 @keyframes musicPulse{to{transform:scale(1.25);opacity:.65}}
 .music-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 
-/* Persistent one-tap soundtrack activation */
-.sound-on{position:fixed;top:max(16px,env(safe-area-inset-top));right:18px;z-index:1000;display:flex;align-items:center;gap:8px;padding:11px 13px;border:1px solid rgba(229,196,135,.62);background:rgba(9,8,7,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--gold);font:9px "DM Sans",sans-serif;letter-spacing:.16em;cursor:pointer}
-.sound-on .sound-symbol{font:18px Georgia;line-height:10px}
-.sound-on.is-on{border-color:rgba(229,196,135,.35);opacity:.82;cursor:default}
-.sound-on:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
-@media(max-width:650px){.sound-on{top:max(12px,env(safe-area-inset-top));right:12px;padding:10px 11px}}
+
+/* Full-screen birthday surprise entrance */
+.surprise-gate{position:fixed;inset:0;z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:28px 22px;background:#090807;color:#f5eee2;text-align:center;transition:opacity .75s ease,visibility .75s ease}
+.surprise-gate[hidden]{display:none}
+.surprise-glow{position:absolute;width:min(78vw,560px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(190,145,75,.17),rgba(190,145,75,.045) 42%,transparent 70%);pointer-events:none}
+.gate-eyebrow,.gate-footnote{position:relative;color:var(--gold);font:9px "DM Sans",sans-serif;letter-spacing:.28em}
+.gate-emblem{position:relative;display:flex;align-items:center;justify-content:center;width:94px;height:94px;margin:38px 0;border:1px solid rgba(229,196,135,.5);border-radius:50%;font:54px "Playfair Display",serif;color:var(--gold)}
+.gate-emblem span{position:absolute;right:8px;top:7px;font:15px Georgia}
+.gate-title{position:relative;margin:0 0 38px;font:clamp(30px,6vw,54px)/1.2 "Playfair Display",serif}
+.gate-title em{color:var(--gold);font-weight:500}
+.surprise-button{position:relative;display:flex;align-items:center;justify-content:space-between;gap:35px;min-width:240px;padding:17px 20px;border:1px solid rgba(229,196,135,.72);background:rgba(229,196,135,.08);color:var(--gold);font:9px "DM Sans",sans-serif;letter-spacing:.2em;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.surprise-button b{font-size:17px;font-weight:400}
+.surprise-button:active{transform:scale(.98);background:rgba(229,196,135,.18)}
+.surprise-button:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
+.gate-footnote{position:absolute;bottom:max(28px,env(safe-area-inset-bottom));opacity:.65;font-size:8px}
+@media(max-width:650px){.gate-emblem{width:82px;height:82px;margin:32px 0}.gate-title{margin-bottom:34px}}
