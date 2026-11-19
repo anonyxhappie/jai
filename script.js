@@ -12,18 +12,26 @@
  const wish=document.getElementById('wishButton'),sign=document.getElementById('signoff');
  wish?.addEventListener('click',()=>{if(sign)sign.textContent='Wishing you a year as extraordinary as you are. ❤️';wish.innerHTML='WISH SENT <b>✦</b>';});
 
- // Start on the first user touch/click. Remove the one-shot listener
- // immediately so later scrolling, taps, and clicks never affect music.
+ // A deliberate tap on SOUND ON starts playback on mobile browsers.
+ // Once started, the soundtrack loops and later interactions cannot control it.
  const audio=document.getElementById('birthdayAudio');
- if(audio){
+ const soundButton=document.getElementById('soundOn');
+ const soundLabel=document.getElementById('soundLabel');
+ if(audio && soundButton){
    audio.loop=true;
-   let started=false;
-   const startMusic=()=>{
-     if(started)return;
-     started=true;
-     document.removeEventListener('pointerdown',startMusic,true);
-     audio.play().catch(()=>{});
-   };
-   document.addEventListener('pointerdown',startMusic,{capture:true,passive:true});
+   soundButton.addEventListener('click',async()=>{
+     if(!audio.paused)return;
+     soundButton.disabled=true;
+     if(soundLabel)soundLabel.textContent='STARTING…';
+     try{
+       await audio.play();
+       soundButton.classList.add('is-on');
+       soundButton.setAttribute('aria-label','Birthday music is on');
+       if(soundLabel)soundLabel.textContent='SOUND ON';
+     }catch(error){
+       soundButton.disabled=false;
+       if(soundLabel)soundLabel.textContent='TAP FOR SOUND';
+     }
+   });
  }
 })();
