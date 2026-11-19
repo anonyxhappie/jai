@@ -11,15 +11,24 @@
  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
  const wish=document.getElementById('wishButton'),sign=document.getElementById('signoff');
  wish?.addEventListener('click',()=>{if(sign)sign.textContent='Wishing you a year as extraordinary as you are. ❤️';wish.innerHTML='WISH SENT <b>✦</b>';});
- // Begin silently in the button's user gesture for mobile Safari permission.
- // After ten seconds, rewind and unmute so the song starts audibly from 0:00.
+
+ // Start immediately on the visitor's tap, positioned at 00:10 in the track.
  const gate=document.getElementById('surpriseGate'),enter=document.getElementById('surpriseButton'),audio=document.getElementById('birthdayAudio');
  if(gate&&enter) enter.addEventListener('click',()=>{
    if(audio){
-     audio.loop=true; audio.muted=true; audio.volume=1;
-     const p=audio.play(); if(p&&p.catch)p.catch(()=>{});
-     window.setTimeout(()=>{audio.currentTime=0;audio.muted=false;},10000);
+     audio.loop=true;
+     try{audio.currentTime=10;}catch(error){}
+     const playback=audio.play();
+     if(playback&&playback.catch) playback.catch(()=>{
+       const retry=()=>{
+         try{audio.currentTime=10;}catch(error){}
+         audio.play().catch(()=>{});
+       };
+       if(audio.readyState>=1)retry();
+       else audio.addEventListener('loadedmetadata',retry,{once:true});
+     });
    }
-   gate.hidden=true; document.body.classList.add('surprise-entered');
+   gate.hidden=true;
+   document.body.classList.add('surprise-entered');
  },{once:true});
 })();
