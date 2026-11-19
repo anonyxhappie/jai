@@ -1,1 +1,29 @@
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#090909;color:#f0ece3;font-family:Arial,sans-serif}main{min-height:100vh;display:grid;align-content:center;justify-items:center;text-align:center;padding:4vw 7vw;position:relative;overflow:hidden}main:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(181,139,78,.19),transparent 60%);pointer-events:none}h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(3.5rem,10vw,9rem);line-height:.94;letter-spacing:-.06em;margin:0 0 2rem;position:relative}h1 em{color:#e7c990}p{font-size:clamp(1rem,2vw,1.3rem);line-height:1.7;color:#aaa49a;max-width:540px;position:relative}h2{font-family:Georgia,serif;font-size:clamp(2.3rem,6vw,5rem);font-weight:400;color:#e7c990;margin:1rem 0 2rem;position:relative}img{width:min(620px,90vw);max-height:58vh;object-fit:cover;object-position:center 40%;border:1px solid rgba(231,201,144,.35);box-shadow:0 30px 100px #000;position:relative} @media(max-width:600px){main{padding:12vh 7vw}img{max-height:52vh}}
+:root{color-scheme:dark;--gold:#e5c487;--cream:#f2eee6;--muted:#aaa39a;--bg:#090807}
+*{box-sizing:border-box}
+html{min-height:100%;background:var(--bg)}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 42%,#211a10 0%,#100e0b 42%,#090807 78%);color:var(--cream);font-family:"DM Sans",sans-serif}
+.page{min-height:100svh;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:clamp(44px,8vh,90px) 22px 28px}
+.grain{position:absolute;inset:0;pointer-events:none;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E")}
+.eyebrow,footer{font-size:9px;letter-spacing:.28em;color:#887b66;text-align:center}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:clamp(30px,6vh,64px)}
+.eyebrow span{height:1px;width:24px;background:#8d7146}
+.hero{width:min(100%,820px);text-align:center;position:relative;z-index:1}
+.intro{font-family:"Playfair Display",serif;font-size:clamp(2.4rem,8vw,6rem);line-height:1;margin:0;color:#d8d0c3}
+h1{font-family:"Playfair Display",serif;font-weight:500;font-size:clamp(5rem,18vw,12rem);line-height:.88;letter-spacing:-.065em;margin:0;color:var(--cream)}
+h1 span{color:var(--gold)}
+.legacy{font-family:"Playfair Display",serif;font-style:italic;font-size:clamp(3.4rem,12vw,8.4rem);line-height:1;margin:12px 0 0;color:var(--gold);letter-spacing:-.055em}
+.rule{display:flex;align-items:center;justify-content:center;gap:15px;margin:clamp(30px,6vh,58px) auto 25px;color:var(--gold);font-family:"Playfair Display",serif;font-size:17px}
+.rule i{display:block;width:52px;height:1px;background:linear-gradient(90deg,transparent,#94784c)}
+.rule i:last-child{transform:rotate(180deg)}
+.message{font-size:clamp(14px,3.8vw,20px);line-height:1.9;color:var(--muted);margin:0 auto;max-width:580px}
+.birthday{font-family:"Playfair Display",serif;font-size:clamp(2rem,7.5vw,5.4rem);line-height:1.1;color:var(--gold);margin:clamp(34px,7vh,66px) 0 0;letter-spacing:-.04em}
+.birthday em{font-style:italic}
+.portrait{width:min(520px,88vw);margin:34px auto 0;border:1px solid rgba(229,196,135,.5);padding:5px;background:#17120c;box-shadow:0 24px 80px #0008}
+.portrait[hidden]{display:none}
+.portrait img{display:block;width:100%;height:auto;max-height:58svh;object-fit:cover}
+.signature{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#827766;margin:clamp(34px,6vh,56px) 0 0}
+.signature span{color:var(--gold);padding-left:8px}
+footer{position:relative;z-index:1;margin-top:clamp(45px,8vh,78px);font-size:8px}
+footer span{color:var(--gold);padding:0 8px}
+@media(max-width:480px){.page{padding-top:58px;padding-bottom:26px}.eyebrow{font-size:8px;letter-spacing:.2em}.rule{margin-top:34px}.message br{display:none}.message{max-width:320px}.birthday{max-width:350px;margin-left:auto;margin-right:auto}}
+@media(prefers-reduced-motion:no-preference){.hero>*{animation:rise .9s both}.intro{animation-delay:.08s}h1{animation-delay:.16s}.legacy{animation-delay:.24s}.message{animation-delay:.34s}.birthday{animation-delay:.44s}@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}}
