@@ -1,9 +1,11 @@
 (() => {
-  const frame = document.getElementById("portrait");
-  const photo = document.getElementById("hero-photo");
-  if (!frame || !photo) return;
-  const reveal = () => { frame.hidden = false; };
-  photo.addEventListener("load", reveal, { once: true });
-  photo.addEventListener("error", () => { frame.hidden = true; }, { once: true });
-  if (photo.complete && photo.naturalWidth > 0) reveal();
+ const photos=[...document.querySelectorAll('.photo img')],box=document.getElementById('lightbox'),large=document.getElementById('lightboxImage');
+ photos.forEach(img=>img.addEventListener('click',()=>{large.src=img.src;large.alt=img.alt;box.hidden=false}));
+ const close=()=>{box.hidden=true;large.removeAttribute('src')};
+ document.getElementById('closeLightbox').addEventListener('click',close);
+ box.addEventListener('click',e=>{if(e.target===box)close()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+ const wish=document.getElementById('wishButton'),sign=document.getElementById('signoff');
+ wish.addEventListener('click',()=>{sign.textContent='Wishing you a year as extraordinary as you are. ❤️';wish.innerHTML='WISH SENT <b>✦</b>';});
+ const sound=document.getElementById('soundToggle');sound.addEventListener('click',()=>{const on=sound.getAttribute('aria-pressed')!=='true';sound.setAttribute('aria-pressed',String(on));sound.textContent=on?'SOUND ON':'SOUND OFF';});
 })();
