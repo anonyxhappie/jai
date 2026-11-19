@@ -1,0 +1,53 @@
+name: Apply Jai cinematic photo grade
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/grade-jai-photos.yml
+permissions:
+  contents: write
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow numpy
+      - name: Apply consistent champagne editorial grade
+        run: |
+          python - <<'PY'
+          from PIL import Image, ImageEnhance
+          import numpy as np, os
+          names = ["golden-birthday.webp", "birthday-laugh.webp", "blue-cake.webp", "jai-river.webp", "candle-moment.webp"]
+          for name in names:
+              path = os.path.join("assets", name)
+              im = Image.open(path).convert("RGB")
+              a = np.asarray(im).astype(np.float32) / 255.0
+              lum = 0.2126*a[:,:,0] + 0.7152*a[:,:,1] + 0.0722*a[:,:,2]
+              a = np.clip((a - 0.46) * 1.16 + 0.46, 0, 1)
+              lum = 0.2126*a[:,:,0] + 0.7152*a[:,:,1] + 0.0722*a[:,:,2]
+              a = lum[:,:,None] + (a - lum[:,:,None]) * 0.82
+              hi = np.clip((lum - 0.38) / 0.62, 0, 1)
+              sh = np.clip((0.48 - lum) / 0.48, 0, 1)
+              a[:,:,0] += 0.075*hi - 0.012*sh
+              a[:,:,1] += 0.032*hi - 0.004*sh
+              a[:,:,2] += -0.045*hi + 0.018*sh
+              h,w = a.shape[:2]
+              yy,xx = np.mgrid[0:h,0:w]
+              r = np.sqrt(((xx-(w-1)/2)/(w/2))**2 + ((yy-(h-1)/2)/(h/2))**2)
+              vign = np.clip(1 - 0.20*np.clip((r-0.30)/0.85,0,1)**1.6, 0.78, 1)
+              a *= vign[:,:,None]
+              a = np.clip(a + np.random.default_rng(42).normal(0,0.006,a.shape[:2])[:,:,None],0,1)
+              out = Image.fromarray((a*255).astype("uint8"))
+              out = ImageEnhance.Sharpness(out).enhance(1.12)
+              out.save(path, "WEBP", quality=91, method=6)
+          PY
+      - name: Commit edited photo assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/*.webp
+          git commit -m "Edit Jai gallery photos with cinematic champagne grade" || exit 0
+          git push
