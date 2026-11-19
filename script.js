@@ -12,26 +12,20 @@
  const wish=document.getElementById('wishButton'),sign=document.getElementById('signoff');
  wish?.addEventListener('click',()=>{if(sign)sign.textContent='Wishing you a year as extraordinary as you are. ❤️';wish.innerHTML='WISH SENT <b>✦</b>';});
 
- // A deliberate tap on SOUND ON starts playback on mobile browsers.
- // Once started, the soundtrack loops and later interactions cannot control it.
+ // The visitor's explicit entrance tap reveals the page and starts the
+ // looping soundtrack within the same user gesture (mobile autoplay policy).
+ const gate=document.getElementById('surpriseGate');
+ const enter=document.getElementById('surpriseButton');
  const audio=document.getElementById('birthdayAudio');
- const soundButton=document.getElementById('soundOn');
- const soundLabel=document.getElementById('soundLabel');
- if(audio && soundButton){
-   audio.loop=true;
-   soundButton.addEventListener('click',async()=>{
-     if(!audio.paused)return;
-     soundButton.disabled=true;
-     if(soundLabel)soundLabel.textContent='STARTING…';
-     try{
-       await audio.play();
-       soundButton.classList.add('is-on');
-       soundButton.setAttribute('aria-label','Birthday music is on');
-       if(soundLabel)soundLabel.textContent='SOUND ON';
-     }catch(error){
-       soundButton.disabled=false;
-       if(soundLabel)soundLabel.textContent='TAP FOR SOUND';
+ if(gate && enter){
+   enter.addEventListener('click',()=>{
+     if(audio){
+       audio.loop=true;
+       const playback=audio.play();
+       if(playback && typeof playback.catch==='function')playback.catch(()=>{});
      }
-   });
+     gate.hidden=true;
+     document.body.classList.add('surprise-entered');
+   },{once:true});
  }
 })();
