@@ -1,34 +1,56 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#090807">
-  <meta name="description" content="A birthday tribute to Jai — the legend, the brother, the legacy.">
-  <title>Jai — The Legend Edition</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090807"><meta name="description" content="A birthday tribute to Jai — the legend, the brother, the legacy.">
+<title>Jai — The Legend Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="page">
-    <div class="grain" aria-hidden="true"></div>
-    <div class="eyebrow"><span></span> A TRIBUTE TO THE ORIGINAL <span></span></div>
-    <section class="hero">
-      <p class="intro">Not just a</p>
-      <h1>brother<span>.</span></h1>
-      <p class="legacy">A LEGACY.</p>
-      <div class="rule"><i></i><span>J</span><i></i></div>
-      <p class="message">Not everyone gets a brother like you.<br>Some people are just born lucky.</p>
-      <p class="birthday">Happy Birthday, <em>Jai.</em></p>
-      <figure class="portrait" id="portrait" hidden>
-        <img id="hero-photo" src="assets/hero.jpg" alt="Jai celebrating his birthday">
-      </figure>
-      <p class="signature">With love, always <span>✦</span></p>
-    </section>
-    <footer>THE LEGEND EDITION <span>·</span> MADE FOR JAI</footer>
-  </main>
-  <script src="script.js"></script>
-</body>
-</html>
+<header class="nav"><span class="brand">J<span>.</span></span><span>THE LEGEND EDITION</span><button id="soundToggle" type="button" aria-pressed="false">SOUND OFF</button></header>
+<main>
+<section class="hero" id="top">
+<div class="grain"></div><p class="eyebrow">A TRIBUTE TO THE ORIGINAL</p>
+<p class="intro">Not just a</p><h1>brother<span>.</span></h1><p class="legacy">A LEGACY.</p>
+<div class="rule"><i></i><span>J</span><i></i></div>
+<p class="message">Not everyone gets a brother like you.<br>Some people are just born lucky.</p>
+<p class="birthday">Happy Birthday, <em>Jai.</em></p>
+<a class="scroll-cue" href="#memories">SCROLL TO CELEBRATE <span>↓</span></a>
+</section>
+<section class="manifesto section" id="the-man">
+<p class="kicker">01 / THE MAN</p><div class="manifesto-grid">
+<h2>Some people<br>are made of <em>good things.</em></h2>
+<p>A little madness. A lot of heart. A smile that fills the room. And a way of showing up that says more than a thousand words ever could.<br><br><span>That's Jai. No hype needed. Just facts.</span></p>
+</div>
+<div class="traits"><span>THE HEART</span><span>THE HUMOUR</span><span>THE GOOD TIMES</span><span>THE BROTHER</span></div>
+</section>
+<section class="memories section" id="memories">
+<p class="kicker">02 / THE ARCHIVE</p><div class="memories-heading"><h2>Life looks<br><em>better in moments.</em></h2><p>Different days, different scenes.<br>Same unmistakable energy.</p></div>
+<div class="photo-grid">
+<figure class="photo tall"><img src="assets/golden-birthday.webp" alt="Jai celebrating with his birthday cake"><figcaption><span>THE MAIN CHARACTER</span><span>01 — THE CELEBRATION</span></figcaption></figure>
+<figure class="photo wide"><img src="assets/birthday-laugh.webp" alt="Jai laughing at his birthday celebration"><figcaption><span>CAKE. CHAOS. CORE MEMORIES.</span><span>02 — THE LAUGHTER</span></figcaption></figure>
+<figure class="photo"><img src="assets/blue-cake.webp" alt="Jai with a birthday cake"><figcaption><span>ANOTHER YEAR, ANOTHER STORY</span><span>03 — THE TRADITION</span></figcaption></figure>
+<figure class="photo"><img src="assets/jai-river.webp" alt="Jai enjoying a day by the river"><figcaption><span>OUT THERE, LIVING IT</span><span>04 — THE JOURNEY</span></figcaption></figure>
+<figure class="photo wide"><img src="assets/candle-moment.webp" alt="Jai at a candlelit birthday moment"><figcaption><span>ALL EYES ON YOU</span><span>05 — THE MOMENT</span></figcaption></figure>
+</div>
+</section>
+<section class="dedication section">
+<p class="kicker">03 / SOMETHING FOR THE BEST BROTHER</p>
+<blockquote>“Not everyone gets a brother like you. <em>Some people are just born lucky.</em>”</blockquote>
+<p class="signature">ALWAYS YOUR BROTHER</p>
+</section>
+<section class="finale" id="finale">
+<p class="kicker">AND NOW, THE MOST IMPORTANT PART</p><div class="crown">✦</div>
+<h2>HAPPY<br><em>BIRTHDAY,</em><br><span>JAI.</span></h2>
+<p class="final-message">Stay blessed. Keep shining. Keep being<br>the legend you are. ❤️</p>
+<button id="wishButton" class="wish-button" type="button">MAKE A WISH <b>✳</b></button>
+<p id="signoff" class="signoff">Your biggest fan, always.</p>
+</section>
+</main>
+<footer class="footer"><span>J<span>.</span> / THE LEGEND EDITION</span><span>ONE OF ONE. NO REPLICAS.</span></footer>
+<div id="lightbox" class="lightbox" hidden><button id="closeLightbox" aria-label="Close photo">×</button><img id="lightboxImage" alt=""></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body></html>
