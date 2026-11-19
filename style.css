@@ -46,3 +46,11 @@
 }
 
 
+
+/* Birthday soundtrack control */
+.music-toggle{display:inline-flex;align-items:center;gap:10px;margin-top:38px;padding:13px 18px;border:1px solid rgba(229,196,135,.55);background:rgba(229,196,135,.055);color:var(--gold);font:9px "DM Sans",sans-serif;letter-spacing:.2em;cursor:pointer;position:relative;z-index:2}
+.music-toggle .music-icon{font:20px Georgia;line-height:10px}
+.music-toggle.is-playing{background:rgba(229,196,135,.14);border-color:var(--gold)}
+.music-toggle.is-playing .music-icon{animation:musicPulse 1s ease-in-out infinite alternate}
+@keyframes musicPulse{to{transform:scale(1.25);opacity:.65}}
+.music-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
