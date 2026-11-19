@@ -11,9 +11,20 @@
  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
  const wish=document.getElementById('wishButton'),sign=document.getElementById('signoff');
  wish?.addEventListener('click',()=>{if(sign)sign.textContent='Wishing you a year as extraordinary as you are. ❤️';wish.innerHTML='WISH SENT <b>✦</b>';});
-   document.getElementById('playYoutube')?.addEventListener('click',playTrack,{once:true});
+ const audio=document.getElementById('birthdayAudio'),toggle=document.getElementById('musicToggle'),label=document.getElementById('musicLabel');
+ const setPlaying=playing=>{
+   if(!toggle)return;
+   toggle.classList.toggle('is-playing',playing);
+   toggle.setAttribute('aria-pressed',String(playing));
+   toggle.setAttribute('aria-label',playing?'Pause birthday music':'Play birthday music');
+   if(label)label.textContent=playing?'MUSIC PLAYING · PAUSE':'PLAY THE MUSIC';
  };
- sound?.addEventListener('click',()=>active?stopTrack():playTrack());
- play?.addEventListener('click',playTrack);
- setSound(false);
+ toggle?.addEventListener('click',async()=>{
+   if(!audio)return;
+   if(!audio.paused){audio.pause();setPlaying(false);return;}
+   try{await audio.play();setPlaying(true);}
+   catch(error){if(label)label.textContent='TAP TO TRY MUSIC';setPlaying(false);}
+ });
+ audio?.addEventListener('pause',()=>setPlaying(false));
+ audio?.addEventListener('play',()=>setPlaying(true));
 })();
