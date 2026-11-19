@@ -54,3 +54,10 @@
 .music-toggle.is-playing .music-icon{animation:musicPulse 1s ease-in-out infinite alternate}
 @keyframes musicPulse{to{transform:scale(1.25);opacity:.65}}
 .music-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+
+/* Persistent one-tap soundtrack activation */
+.sound-on{position:fixed;top:max(16px,env(safe-area-inset-top));right:18px;z-index:1000;display:flex;align-items:center;gap:8px;padding:11px 13px;border:1px solid rgba(229,196,135,.62);background:rgba(9,8,7,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--gold);font:9px "DM Sans",sans-serif;letter-spacing:.16em;cursor:pointer}
+.sound-on .sound-symbol{font:18px Georgia;line-height:10px}
+.sound-on.is-on{border-color:rgba(229,196,135,.35);opacity:.82;cursor:default}
+.sound-on:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+@media(max-width:650px){.sound-on{top:max(12px,env(safe-area-inset-top));right:12px;padding:10px 11px}}
