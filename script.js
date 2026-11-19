@@ -15,7 +15,7 @@
  // Original South-Indian-cinema-inspired instrumental motif, synthesized locally.
  // No film score, recording, lyrics, or external audio asset is used.
  const sound=document.getElementById('soundToggle');
- let ctx=null,master=null,playing=false,pending=true,loopTimer=null,beatTimer=null;
+ let ctx=null,master=null,playing=false,pending=true,starting=false,loopTimer=null,beatTimer=null;
  const toast=(message)=>{
    const el=document.getElementById('toast');if(!el)return;
    el.textContent=message;el.classList.add('show');
@@ -70,8 +70,10 @@
    if(bar%2===0)tone(880,t+.12,.055,.009,'triangle',620);
  };
  const start=async()=>{
+   if(starting)return false;
+   starting=true;
    const AC=window.AudioContext||window.webkitAudioContext;
-   if(!AC){setState('blocked');toast('This browser does not support audio.');return false;}
+   if(!AC){starting=false;setState('blocked');toast('This browser does not support audio.');return false;}
    try{
      if(!ctx){
        ctx=new AC();
@@ -82,8 +84,8 @@
        makeDrone();
      }
      await ctx.resume();
-     if(ctx.state!=='running'){pending=true;setState('blocked');return false;}
-     if(playing)return true;
+     if(ctx.state!=='running'){starting=false;pending=true;setState('blocked');return false;}
+     if(playing){starting=false;return true;}
      playing=true;pending=false;setState('on');
      const now=ctx.currentTime;
      master.gain.cancelScheduledValues(now);
@@ -93,8 +95,9 @@
      clearInterval(loopTimer);clearInterval(beatTimer);
      loopTimer=setInterval(playPhrase,1150);
      beatTimer=setInterval(percussion,2300);
+     starting=false;
      return true;
-   }catch(e){pending=true;setState('blocked');return false;}
+   }catch(e){starting=false;pending=true;setState('blocked');return false;}
  };
  const stop=()=>{
    if(!ctx||!master){playing=false;setState('off');return;}
