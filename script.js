@@ -11,22 +11,19 @@
  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
  const wish=document.getElementById('wishButton'),sign=document.getElementById('signoff');
  wish?.addEventListener('click',()=>{if(sign)sign.textContent='Wishing you a year as extraordinary as you are. ❤️';wish.innerHTML='WISH SENT <b>✦</b>';});
-
- // Start immediately on the visitor's tap, positioned at 00:10 in the track.
+ // Start playback in the tap gesture. Seek after metadata is available:
+ // setting currentTime before metadata loads is ignored by some browsers.
  const gate=document.getElementById('surpriseGate'),enter=document.getElementById('surpriseButton'),audio=document.getElementById('birthdayAudio');
  if(gate&&enter) enter.addEventListener('click',()=>{
    if(audio){
      audio.loop=true;
-     try{audio.currentTime=10;}catch(error){}
+     const seekToTen=()=>{
+       try{if(Number.isFinite(audio.duration)&&audio.duration>10)audio.currentTime=10;}catch(error){}
+     };
+     if(audio.readyState>=1)seekToTen();
+     else audio.addEventListener('loadedmetadata',seekToTen,{once:true});
      const playback=audio.play();
-     if(playback&&playback.catch) playback.catch(()=>{
-       const retry=()=>{
-         try{audio.currentTime=10;}catch(error){}
-         audio.play().catch(()=>{});
-       };
-       if(audio.readyState>=1)retry();
-       else audio.addEventListener('loadedmetadata',retry,{once:true});
-     });
+     if(playback&&playback.catch)playback.catch(()=>{});
    }
    gate.hidden=true;
    document.body.classList.add('surprise-entered');
