@@ -45,3 +45,10 @@
  .photo-grid .photo:nth-child(5){margin-top:70px}
 }
 
+
+/* Accessible soundtrack control */
+#soundToggle{cursor:pointer;padding:9px 0 9px 12px;transition:color .2s ease,opacity .2s ease}
+#soundToggle::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;margin:0 9px 1px 0;background:#766b5a;vertical-align:middle}
+#soundToggle[aria-pressed="true"]{color:var(--gold)}
+#soundToggle[aria-pressed="true"]::before{background:var(--gold);box-shadow:0 0 10px rgba(229,196,135,.65)}
+#soundToggle:focus-visible,.wish-button:focus-visible{outline:1px solid var(--gold);outline-offset:5px}
