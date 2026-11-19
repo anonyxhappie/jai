@@ -12,21 +12,18 @@
  const wish=document.getElementById('wishButton'),sign=document.getElementById('signoff');
  wish?.addEventListener('click',()=>{if(sign)sign.textContent='Wishing you a year as extraordinary as you are. ❤️';wish.innerHTML='WISH SENT <b>✦</b>';});
 
- // Start automatically; if the browser blocks audible autoplay, retry on the
- // visitor's first interaction. There is intentionally no playback control.
+ // Start on the first user touch/click. Remove the one-shot listener
+ // immediately so later scrolling, taps, and clicks never affect music.
  const audio=document.getElementById('birthdayAudio');
  if(audio){
    audio.loop=true;
+   let started=false;
    const startMusic=()=>{
-     audio.play().then(()=>{
-       document.removeEventListener('pointerdown',startMusic);
-       document.removeEventListener('keydown',startMusic);
-       document.removeEventListener('touchstart',startMusic);
-     }).catch(()=>{});
+     if(started)return;
+     started=true;
+     document.removeEventListener('pointerdown',startMusic,true);
+     audio.play().catch(()=>{});
    };
-   startMusic();
-   document.addEventListener('pointerdown',startMusic,{passive:true});
-   document.addEventListener('touchstart',startMusic,{passive:true});
-   document.addEventListener('keydown',startMusic);
+   document.addEventListener('pointerdown',startMusic,{capture:true,passive:true});
  }
 })();
