@@ -65,7 +65,7 @@
 .gate-emblem span{position:absolute;right:8px;top:7px;font:15px Georgia}
 .gate-title{position:relative;margin:0 0 38px;font:clamp(30px,6vw,54px)/1.2 "Playfair Display",serif}
 .gate-title em{color:var(--gold);font-weight:500}
-.surprise-button{position:relative;display:flex;align-items:center;justify-content:space-between;gap:35px;min-width:240px;padding:17px 20px;border:1px solid rgba(229,196,135,.72);background:rgba(229,196,135,.08);color:var(--gold);font:9px "DM Sans",sans-serif;letter-spacing:.2em;cursor:pointer;transition:background .2s ease,transform .2s ease}
+.surprise-button{position:relative;display:flex;align-items:center;justify-content:center;gap:0;text-align:center;min-width:240px;padding:17px 20px;border:1px solid rgba(229,196,135,.72);background:rgba(229,196,135,.08);color:var(--gold);font:9px "DM Sans",sans-serif;letter-spacing:.2em;cursor:pointer;transition:background .2s ease,transform .2s ease}
 .surprise-button b{font-size:17px;font-weight:400}
 .surprise-button:active{transform:scale(.98);background:rgba(229,196,135,.18)}
 .surprise-button:focus-visible{outline:2px solid var(--gold);outline-offset:5px}
